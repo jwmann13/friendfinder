@@ -46,9 +46,12 @@
 
     <script type="text/javascript">
         $(document).ready(() => {
+            let numQuestions;
+
             $.getJSON("/api/questions", (questions) => {
 
                 console.log(questions)
+                numQuestions = questions.length;
 
                 let counter = 0;
 
@@ -72,15 +75,17 @@
 
 
             $(".submit").on("click", (event) => {
-                evemt.preventDefault();
+                event.preventDefault();
 
                 let scores = [];
-                scores.push($(`input[name=question0]:checked`).val());
+                for (let i = 0; i < numQuestions; i++) {
+                    scores.push( parseInt( $(`input[name=question${i}]:checked`).val() ) );
+                }
                 console.log(scores)
 
                 let completeSurvey = {
                     name: $("#survey-name").val().trim(),
-                    photo: "http://lorempixel.com/200/200/",
+                    photo: "https://lorempixel.com/200/200/",
                     scores: scores,
                 }
 
@@ -91,7 +96,9 @@
                     } else {
                         console.log("didnt");
                     }
-                })
+                });
+
+                $('form').val('')
             });
         });
     </script>
