@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-// require('dotenv').config();
+require('dotenv').config();
 
 let app = express();
 
@@ -13,5 +13,5 @@ require('./app/routing/apiRoutes')(app);
 require('./app/routing/htmlRoutes')(app);
 
 app.listen(PORT, () => {
-    console.log(`App listening on http://localhost: ${PORT}`)
+    console.log(`App listening on http://localhost:${PORT}`)
 })
