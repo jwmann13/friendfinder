@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <title>All of your Friends</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-light">
+                    <a href="./" class="navbar-brand">FriendFinder</a>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="jumbotron">
+                    <div class="row friend-cards">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(() => {
+            $.getJSON('/api/friends', (data) =>{
+                data.forEach(friend => {
+                    let friendCard = $('<div>').addClass('card col-4').html(`
+                        <img class="card-img-top" src=${friend.photo}>
+                        <div class="card-header">${friend.name}</div>
+                    `);
+
+                    $('.friend-cards').append(friendCard);
+                });
+            })
+        })
+    </script>
+</body>
+
+</html>
