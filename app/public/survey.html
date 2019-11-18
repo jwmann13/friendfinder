@@ -32,21 +32,9 @@
                     </div>
                     <div class="card-body">
                         <form action="" role="form">
-                            <div class="form-group">
+                            <div class="form-group" id="name-input">
                                 <label for="reserve-name">Name</label>
-                                <input type="radio" class="form-control" id="reserve-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="reserve-phone">Phone Number</label>
-                                <input type="radio" class="form-control" id="reserve-phone">
-                            </div>
-                            <div class="form-group">
-                                <label for="reserve-email">Email</label>
-                                <input type="radio" class="form-control" id="reserve-email">
-                            </div>
-                            <div class="form-group">
-                                <label for="reserve-unique-id">Unique ID</label>
-                                <input type="radio" class="form-control" id="reserve-unique-id">
+                                <input type="text" class="form-control" id="reserve-name">
                             </div>
                             <button type="submit" class="btn btn-primary submit">Submit</button>
                         </form>
@@ -55,6 +43,51 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $.getJSON("/api/questions", (questions) => {
+
+            console.log(questions)
+
+            let counter = 0;
+
+            questions.forEach(q => {
+                let form = $("<div>").addClass("form-group").html(`
+                    <label for="question${counter}">${q.body}</label>
+                    <fieldset id="question${counter}">
+                        <input type="radio" value="1" name="question${counter}">
+                        <input type="radio" value="2" name="question${counter}">
+                        <input type="radio" value="3" name="question${counter}">
+                        <input type="radio" value="4" name="question${counter}">
+                        <input type="radio" value="5" name="question${counter}">
+                    </fieldset>
+                `);
+                $("#name-input").append(form);
+
+                counter++;
+            });
+        });
+
+
+
+        $(".submit").on("click", (event) => {
+            evemt.preventDefault();
+
+            let completeSurvey = {
+                name: $("#reserv-name").val().trim(),
+                photo: "http://lorempixel.com/200/200/",
+                scores: [],
+            }
+
+            $.post("/api/friends", completeSurvey, (data) => {
+                if (data) {
+                    console.log("worked");
+                } else {
+                    console.log("didnt");
+                }
+            })
+        });
+    </script>
 </body>
 
 </html>

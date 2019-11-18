@@ -1,8 +1,6 @@
-
-
-module.exports = [{
+let users = [{
     "name": "Jeff",
-    "photo": "<url>",
+    "photo": "https://lorempixel.com/200/200/",
     "scores": [
         1,
         2,
@@ -10,6 +8,6 @@ module.exports = [{
         5,
         6
     ]
-},{
-
 }]
+
+module.exports = users;
