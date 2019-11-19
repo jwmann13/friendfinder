@@ -11,31 +11,31 @@ let questions = [{
     high: "Strongly agree",
     low: "Strongly disagree"
 }, {
-    body: "q4",
+    body: "You want a big family",
     high: "Strongly agree",
     low: "Strongly disagree"
 }, {
-    body: "q5",
+    body: "You think people should keep secrets",
     high: "Strongly agree",
     low: "Strongly disagree"
 }, {
-    body: "q6",
+    body: "You like to go to bed early",
     high: "Strongly agree",
     low: "Strongly disagree"
 }, {
-    body: "q7",
+    body: "You hate when people talk during movies",
     high: "Strongly agree",
     low: "Strongly disagree"
 }, {
-    body: "q8",
+    body: "You like to talk about politics",
     high: "Strongly agree",
     low: "Strongly disagree"
 }, {
-    body: "q9",
+    body: "You see your grandparents every weekend",
     high: "Strongly agree",
     low: "Strongly disagree"
 }, {
-    body: "q10",
+    body: "You want to spend time solving mysteries",
     high: "Strongly agree",
     low: "Strongly disagree"
 }];
