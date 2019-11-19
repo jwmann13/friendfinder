@@ -1,6 +1,6 @@
 let users = [{
     "name": "Scooby",
-    "photo": "https://en.wikipedia.org/wiki/File:Scooby-Doo.png",
+    "photo": "https://media.giphy.com/media/26DN0jWj2mNv6WwU0/giphy.gif",
     "scores": [
         1,
         3,
@@ -15,7 +15,7 @@ let users = [{
     ]
 }, {
     "name": "Shaggy",
-    "photo": "https://en.wikipedia.org/wiki/File:ShaggyRogers.png",
+    "photo": "https://media.giphy.com/media/Ay2yAQgxhFD7a/giphy.gif",
     "scores": [
         3,
         4,
@@ -30,7 +30,7 @@ let users = [{
     ]
 }, {
     "name": "Velma",
-    "photo": "https://en.wikipedia.org/wiki/File:Velma_Dinkley.png",
+    "photo": "https://media.giphy.com/media/2tNwXp92oWC0z6FDqI/giphy.gif",
     "scores": [
         5,
         1,
@@ -45,7 +45,7 @@ let users = [{
     ]
 }, {
     "name": "Daphne",
-    "photo": "https://en.wikipedia.org/wiki/File:Daphne_Blake.png",
+    "photo": "https://media.giphy.com/media/3ohs4geaUEERy8L4J2/giphy.gif",
     "scores": [
         2,
         5,
@@ -60,7 +60,7 @@ let users = [{
     ]
 }, {
     "name": "Fred",
-    "photo": "https://en.wikipedia.org/wiki/File:Fred_Jones.png",
+    "photo": "https://media.giphy.com/media/OUZDNRKZlhFOo/giphy.gif",
     "scores": [
         4,
         4,

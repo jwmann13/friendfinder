@@ -85,10 +85,10 @@
                         <label for="question${counter}" class="row font-weight-bold">${q.body}</label>
                         <fieldset class="" id="question${counter}">
                             <div class="row">
-                                <span class=""></span>
-                                <label class="col-8">${q.high}</label>
-                                <label class="col-3">${q.low}</label>
                                 <span class="col-1"></span>
+                                <label class="col-8 text-align-center">${q.high}</label>
+                                <label class="col-3 text-align-center">${q.low}</label>
+                                <span class=""></span>
                             </div>
                             <div class="row">
                                 <span class="col-1"></span>
@@ -107,8 +107,6 @@
                     counter++;
                 });
             });
-
-
 
             $(".submit").on("click", (event) => {
                 event.preventDefault();
