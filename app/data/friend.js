@@ -1,6 +1,6 @@
 let users = [{
     "name": "Scooby",
-    "photo": "https://lorempixel.com/200/200/",
+    "photo": "https://en.wikipedia.org/wiki/File:Scooby-Doo.png",
     "scores": [
         1,
         3,
@@ -15,7 +15,7 @@ let users = [{
     ]
 }, {
     "name": "Shaggy",
-    "photo": "https://lorempixel.com/200/200/",
+    "photo": "https://en.wikipedia.org/wiki/File:ShaggyRogers.png",
     "scores": [
         3,
         4,
@@ -30,7 +30,7 @@ let users = [{
     ]
 }, {
     "name": "Velma",
-    "photo": "https://lorempixel.com/200/200/",
+    "photo": "https://en.wikipedia.org/wiki/File:Velma_Dinkley.png",
     "scores": [
         5,
         1,
@@ -45,7 +45,7 @@ let users = [{
     ]
 }, {
     "name": "Daphne",
-    "photo": "https://lorempixel.com/200/200/",
+    "photo": "https://en.wikipedia.org/wiki/File:Daphne_Blake.png",
     "scores": [
         2,
         5,
@@ -60,7 +60,7 @@ let users = [{
     ]
 }, {
     "name": "Fred",
-    "photo": "https://lorempixel.com/200/200/",
+    "photo": "https://en.wikipedia.org/wiki/File:Fred_Jones.png",
     "scores": [
         4,
         4,
