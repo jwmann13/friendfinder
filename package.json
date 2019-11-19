@@ -4,7 +4,7 @@
   "description": "a compatability matcher with surveys",
   "main": "index.js",
   "scripts": {
-    "test": "node index",
+    "start": "node index",
     "watch": "nodemon index"
   },
   "repository": {
