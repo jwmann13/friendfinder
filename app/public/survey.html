@@ -23,6 +23,7 @@
                 </nav>
             </div>
         </div>
+
         <!-- Survey Form -->
         <div class="row">
             <div class="col-lg-12">
@@ -36,9 +37,31 @@
                                 <label for="survey-name">Name</label>
                                 <input type="text" class="form-control" id="survey-name">
                             </div>
-                            <button type="submit" class="btn btn-primary submit">Submit</button>
+                            <button type="submit" class="btn btn-primary submit" data-toggle="modal"
+                                data-target="#my-modal">Submit</button>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">We found you a new friend!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -66,7 +89,7 @@
                         <input type="radio" value="5" name="question${counter}">
                     </fieldset>
                 `);
-                    $("#name-input").after(form);
+                    $(".submit").before(form);
 
                     counter++;
                 });
@@ -77,18 +100,66 @@
             $(".submit").on("click", (event) => {
                 event.preventDefault();
 
+                // push values from survey radio buttons to an array that will go into the user's friend object
                 let scores = [];
                 for (let i = 0; i < numQuestions; i++) {
-                    scores.push( parseInt( $(`input[name=question${i}]:checked`).val() ) );
+                    scores.push(parseInt($(`input[name=question${i}]:checked`).val()));
                 }
-                console.log(scores)
+                // console.log(scores)
 
+                // looks through existing list of friends to make a match and insert content to the modal
+                $.getJSON("/api/friends", (data) => {
+                    // the friend who will be shown
+                    let friendMatch;
+                    // the high score that will determine if the friends are compatible
+                    let lowScore = Infinity;
+
+                    // look through each friend from the friends.js
+                    // it's very inefficient i know
+                    data.forEach(friend => {
+                        // check the score arrays are the same length
+                        if (scores.length === friend.scores.length) {
+                            let compatibilitySum = 0;
+                            // iterate over user's score array
+                            for (let i = 0; i < scores.length; i++) {
+                                // user's scores
+                                const currentUser = scores[i];
+                                // scores of each friend
+                                const potentialFriend = friend.scores[i];
+
+                                let diff = Math.abs(currentUser - potentialFriend);
+                                compatibilitySum += diff;
+                            }
+
+                            if (compatibilitySum < lowScore) {
+                                lowScore = compatibilitySum;
+                                friendMatch = friend;
+                            }
+
+                            // console.log("match", friendMatch, lowScore);
+                            // console.log("current", friend, compatibilitySum);
+                        } else {
+                            console.log("different number of scores")
+                        }
+                    })
+
+                    $(".modal-body").html(`
+                        <div class="card col-lg-6">
+                            <img class="card-img-top" src=${friendMatch.photo}>
+                            <div class="card-header">${friendMatch.name}</div>
+                            <div class="card-body">Your compatability score is ${highScore}</div>
+                        </div>
+                    `)
+                });
+
+                // object to be pushed into friends.js data
                 let completeSurvey = {
                     name: $("#survey-name").val().trim(),
                     photo: "https://lorempixel.com/200/200/",
                     scores: scores,
                 }
 
+                // post object to api
                 $.post("/api/friends", completeSurvey, (data) => {
                     if (data) {
                         console.log(data);
@@ -98,7 +169,8 @@
                     }
                 });
 
-                $('form').val('')
+                // clear form on submission
+                $('form').trigger('reset')
             });
         });
     </script>
