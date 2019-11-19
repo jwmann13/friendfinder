@@ -58,11 +58,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="card col-6">
-                        <div class="card-header">Scooby</div>
-                        <div class="card-body">ur new friends</div>
-                        <img class="card-img-top" src="https://lorempixel.com/200/200/">
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -110,6 +105,49 @@
                     scores.push(parseInt($(`input[name=question${i}]:checked`).val()));
                 }
                 console.log(scores)
+
+                $.getJSON("/api/friends", (data) => {
+                    // the friend who will be shown
+                    let friendMatch;
+                    // the high score that will determine if the friends are compatible
+                    let highScore = Infinity;
+
+                    // look through each friend from the friends.js
+                    data.forEach(friend => {
+                        // check the score arrays are the same length
+                        if (scores.length === friend.scores.length) {
+                            let compatibilitySum = 0;
+                            // iterate over user's score array
+                            for (let i = 0; i < scores.length; i++) {
+                                // user's scores
+                                const currentUser = scores[i];
+                                // scores of each friend
+                                const potentialFriend = friend.scores[i];
+
+                                let diff = Math.abs(currentUser - potentialFriend);
+                                compatibilitySum += diff;
+                            }
+
+                            if (compatibilitySum < highScore) {
+                                highScore = compatibilitySum;
+                                friendMatch = friend;
+                            }
+
+                            console.log("match", friendMatch, highScore);
+                            console.log("current", friend, compatibilitySum);
+                        } else {
+                            console.log("different number of scores")
+                        }
+                    })
+
+                    $(".modal-body").html(`
+                        <div class="card col-lg-6">
+                            <img class="card-img-top" src=${friendMatch.photo}>
+                            <div class="card-header">${friendMatch.name}</div>
+                            <div class="card-body">Your compatability score is ${highScore}</div>
+                        </div>
+                    `)
+                });
 
                 let completeSurvey = {
                     name: $("#survey-name").val().trim(),
