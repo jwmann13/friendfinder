@@ -160,24 +160,25 @@
                             <div class="card-header">${friendMatch.name}</div>
                             <div class="card-body">Your compatability score is ${lowScore}</div>
                         </div>
-                    `)
-                });
+                    `);
 
-                // object to be pushed into friends.js data
-                let completeSurvey = {
-                    name: $("#survey-name").val().trim(),
-                    photo: "https://lorempixel.com/200/200/",
-                    scores: scores,
-                }
-
-                // post object to api
-                $.post("/api/friends", completeSurvey, (data) => {
-                    if (data) {
-                        console.log(data);
-                        console.log("worked");
-                    } else {
-                        console.log("didnt");
+                    // object to be pushed into friends.js data
+                    let completeSurvey = {
+                        name: $("#survey-name").val().trim(),
+                        photo: "https://lorempixel.com/200/200/",
+                        scores: scores,
                     }
+
+                    // post object to api
+                    $.post("/api/friends", completeSurvey, (data) => {
+                        if (data) {
+                            console.log(data);
+                            console.log("worked");
+                        } else {
+                            console.log("didnt");
+                        }
+                    });
+
                 });
 
                 // clear form on submission
