@@ -73,22 +73,30 @@
 
             $.getJSON("/api/questions", (questions) => {
 
-                console.log(questions)
+                // console.log(questions)
                 numQuestions = questions.length;
 
                 let counter = 0;
 
                 questions.forEach(q => {
                     let form = $("<div>").addClass("form-group").html(`
-                        <label for="question${counter}">${q.body}</label>
-                        <fieldset class="flex-fill" id="question${counter}">
-                            <p>${q.high}</p>
-                            <input type="radio" value="1" name="question${counter}">
-                            <input type="radio" value="2" name="question${counter}">
-                            <input type="radio" value="3" name="question${counter}">
-                            <input type="radio" value="4" name="question${counter}">
-                            <input type="radio" value="5" name="question${counter}">
-                            <p>${q.low}</p>
+                        <label for="question${counter}" class="row font-weight-bold">${q.body}</label>
+                        <fieldset class="" id="question${counter}">
+                            <div class="row">
+                                <span class=""></span>
+                                <label class="col-8">${q.high}</label>
+                                <label class="col-3">${q.low}</label>
+                                <span class="col-1"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-1"></span>
+                                <input class="col-2" type="radio" value="1" name="question${counter}">
+                                <input class="col-2" type="radio" value="2" name="question${counter}">
+                                <input class="col-2" type="radio" value="3" name="question${counter}">
+                                <input class="col-2" type="radio" value="4" name="question${counter}">
+                                <input class="col-2" type="radio" value="5" name="question${counter}">
+                                <span class="col-1"></span>
+                            </div>
                         </fieldset>
                     `);
 
