@@ -32,7 +32,7 @@
                         Survey
                     </div>
                     <div class="card-body">
-                        <form action="" role="form">
+                        <form action="" role="form" autocomplete="off">
                             <div class="form-group" id="name-input">
                                 <label for="survey-name">Name</label>
                                 <input type="text" class="form-control" id="survey-name">
@@ -80,15 +80,18 @@
 
                 questions.forEach(q => {
                     let form = $("<div>").addClass("form-group").html(`
-                    <label for="question${counter}">${q.body}</label>
-                    <fieldset class="flex-fill" id="question${counter}">
-                        <input type="radio" value="1" name="question${counter}">
-                        <input type="radio" value="2" name="question${counter}">
-                        <input type="radio" value="3" name="question${counter}">
-                        <input type="radio" value="4" name="question${counter}">
-                        <input type="radio" value="5" name="question${counter}">
-                    </fieldset>
-                `);
+                        <label for="question${counter}">${q.body}</label>
+                        <fieldset class="flex-fill" id="question${counter}">
+                            <p>${q.high}</p>
+                            <input type="radio" value="1" name="question${counter}">
+                            <input type="radio" value="2" name="question${counter}">
+                            <input type="radio" value="3" name="question${counter}">
+                            <input type="radio" value="4" name="question${counter}">
+                            <input type="radio" value="5" name="question${counter}">
+                            <p>${q.low}</p>
+                        </fieldset>
+                    `);
+
                     $(".submit").before(form);
 
                     counter++;
